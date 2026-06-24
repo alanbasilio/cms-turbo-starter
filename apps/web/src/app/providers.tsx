@@ -8,6 +8,9 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { AuthProvider } from "@/src/components/auth-provider";
+// Side-effect import: configures the axios baseURL and auth interceptor.
+import "@/src/lib/api-client";
 
 // Bump automatically on every release; falls back to a static value in dev.
 const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? "0.1.0";
@@ -60,7 +63,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   // provider. The browser render swaps in the persisting provider.
   if (typeof window === "undefined") {
     return (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>{children}</AuthProvider>
+      </QueryClientProvider>
     );
   }
 
@@ -81,7 +86,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         },
       }}
     >
-      {children}
+      <AuthProvider>{children}</AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </PersistQueryClientProvider>
   );
