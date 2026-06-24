@@ -21,7 +21,7 @@ function getGetUsersCountUrl() {
  * {@link /users/count}
  */
 export async function getUsersCount(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

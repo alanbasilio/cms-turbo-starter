@@ -22,7 +22,7 @@ export const putUsersId200Schema = z
       get role() {
         return usersPermissionsRoleSchema.optional();
       },
-    })
+    }),
   );
 
 /**
@@ -37,5 +37,5 @@ export const putUsersIdMutationRequestSchema = z.object({
 });
 
 export const putUsersIdMutationResponseSchema = z.lazy(
-  () => putUsersId200Schema
+  () => putUsersId200Schema,
 );

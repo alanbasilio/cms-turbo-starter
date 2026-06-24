@@ -19,7 +19,7 @@ export const putUsersPermissionsRolesRole200OkEnum = {
 } as const;
 
 export type PutUsersPermissionsRolesRole200OkEnumKey =
-  typeof putUsersPermissionsRolesRole200OkEnum[keyof typeof putUsersPermissionsRolesRole200OkEnum];
+  (typeof putUsersPermissionsRolesRole200OkEnum)[keyof typeof putUsersPermissionsRolesRole200OkEnum];
 
 /**
  * @description Returns ok if the role was udpated

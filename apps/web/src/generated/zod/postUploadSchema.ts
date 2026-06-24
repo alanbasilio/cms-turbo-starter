@@ -19,31 +19,31 @@ export const postUploadMutationRequestSchema = z.object({
     z
       .string()
       .describe(
-        "The folder where the file(s) will be uploaded to (only supported on strapi-provider-upload-aws-s3)."
-      )
+        "The folder where the file(s) will be uploaded to (only supported on strapi-provider-upload-aws-s3).",
+      ),
   ),
   refId: z.optional(
     z
       .string()
-      .describe("The ID of the entry which the file(s) will be linked to")
+      .describe("The ID of the entry which the file(s) will be linked to"),
   ),
   ref: z.optional(
     z
       .string()
       .describe(
-        "The unique ID (uid) of the model which the file(s) will be linked to (api::restaurant.restaurant)."
-      )
+        "The unique ID (uid) of the model which the file(s) will be linked to (api::restaurant.restaurant).",
+      ),
   ),
   field: z.optional(
     z
       .string()
       .describe(
-        "The field of the entry which the file(s) will be precisely linked to."
-      )
+        "The field of the entry which the file(s) will be precisely linked to.",
+      ),
   ),
   files: z.array(z.instanceof(File)),
 });
 
 export const postUploadMutationResponseSchema = z.lazy(
-  () => postUpload200Schema
+  () => postUpload200Schema,
 );

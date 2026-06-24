@@ -16,5 +16,5 @@ export const deleteUploadFilesIdPathParamsSchema = z.object({
 export const deleteUploadFilesId200Schema = z.lazy(() => uploadFileSchema);
 
 export const deleteUploadFilesIdMutationResponseSchema = z.lazy(
-  () => deleteUploadFilesId200Schema
+  () => deleteUploadFilesId200Schema,
 );

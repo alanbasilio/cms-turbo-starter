@@ -17,5 +17,5 @@ export const getUsersCount200Schema = z.number();
 export const getUsersCountErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersCountQueryResponseSchema = z.lazy(
-  () => getUsersCount200Schema
+  () => getUsersCount200Schema,
 );

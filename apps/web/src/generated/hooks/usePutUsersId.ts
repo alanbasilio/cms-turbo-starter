@@ -28,7 +28,7 @@ export type PutUsersIdMutationKey = ReturnType<typeof putUsersIdMutationKey>;
 export function putUsersIdMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PutUsersIdMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = putUsersIdMutationKey();
   return mutationOptions<
@@ -59,7 +59,7 @@ export function usePutUsersId<TContext>(
     client?: Partial<RequestConfig<PutUsersIdMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -83,7 +83,7 @@ export function usePutUsersId<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PutUsersIdMutationResponse,
     ResponseErrorConfig<Error>,

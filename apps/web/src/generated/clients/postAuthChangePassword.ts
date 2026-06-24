@@ -27,7 +27,7 @@ export async function postAuthChangePassword(
   data: PostAuthChangePasswordMutationRequest,
   config: Partial<RequestConfig<PostAuthChangePasswordMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

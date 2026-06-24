@@ -22,7 +22,7 @@ export const putUsersPermissionsRolesRole200Schema = z.object({
  * @description Error
  */
 export const putUsersPermissionsRolesRoleErrorSchema = z.lazy(
-  () => errorSchema
+  () => errorSchema,
 );
 
 export const putUsersPermissionsRolesRoleMutationRequestSchema = z.object({
@@ -35,5 +35,5 @@ export const putUsersPermissionsRolesRoleMutationRequestSchema = z.object({
 });
 
 export const putUsersPermissionsRolesRoleMutationResponseSchema = z.lazy(
-  () => putUsersPermissionsRolesRole200Schema
+  () => putUsersPermissionsRolesRole200Schema,
 );

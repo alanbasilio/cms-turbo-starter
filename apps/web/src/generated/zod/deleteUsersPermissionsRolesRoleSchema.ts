@@ -21,9 +21,9 @@ export const deleteUsersPermissionsRolesRole200Schema = z.object({
  * @description Error
  */
 export const deleteUsersPermissionsRolesRoleErrorSchema = z.lazy(
-  () => errorSchema
+  () => errorSchema,
 );
 
 export const deleteUsersPermissionsRolesRoleMutationResponseSchema = z.lazy(
-  () => deleteUsersPermissionsRolesRole200Schema
+  () => deleteUsersPermissionsRolesRole200Schema,
 );

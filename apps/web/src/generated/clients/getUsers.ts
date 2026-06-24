@@ -21,7 +21,7 @@ function getGetUsersUrl() {
  * {@link /users}
  */
 export async function getUsers(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

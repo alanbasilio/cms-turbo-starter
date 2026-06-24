@@ -25,7 +25,7 @@ function getDeleteUsersIdUrl(id: DeleteUsersIdPathParams["id"]) {
  */
 export async function deleteUsersId(
   id: DeleteUsersIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

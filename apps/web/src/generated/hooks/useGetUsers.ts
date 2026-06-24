@@ -23,7 +23,7 @@ export const getUsersQueryKey = () => [{ url: "/users" }] as const;
 export type GetUsersQueryKey = ReturnType<typeof getUsersQueryKey>;
 
 export function getUsersQueryOptions(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersQueryKey();
   return queryOptions<
@@ -46,7 +46,7 @@ export function getUsersQueryOptions(
 export function useGetUsers<
   TData = GetUsersQueryResponse,
   TQueryData = GetUsersQueryResponse,
-  TQueryKey extends QueryKey = GetUsersQueryKey
+  TQueryKey extends QueryKey = GetUsersQueryKey,
 >(
   options: {
     query?: Partial<
@@ -59,7 +59,7 @@ export function useGetUsers<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -71,7 +71,7 @@ export function useGetUsers<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

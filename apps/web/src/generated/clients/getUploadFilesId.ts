@@ -24,7 +24,7 @@ function getGetUploadFilesIdUrl(id: GetUploadFilesIdPathParams["id"]) {
  */
 export async function getUploadFilesId(
   id: GetUploadFilesIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

@@ -23,5 +23,5 @@ export const postAuthForgotPasswordMutationRequestSchema = z.object({
 });
 
 export const postAuthForgotPasswordMutationResponseSchema = z.lazy(
-  () => postAuthForgotPassword200Schema
+  () => postAuthForgotPassword200Schema,
 );

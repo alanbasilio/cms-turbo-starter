@@ -147,13 +147,6 @@ export type {
   PostUploadMutationResponse,
 } from "./PostUpload.ts";
 export type {
-  PostUploadId200,
-  PostUploadIdIdMutation,
-  PostUploadIdMutationRequest,
-  PostUploadIdMutationResponse,
-  PostUploadIdQueryParams,
-} from "./PostUploadIdId.ts";
-export type {
   PostUsers201,
   PostUsersError,
   PostUsersMutation,

@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @description Returns a jwt token and user info
  */
 export const postAuthChangePassword200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -26,5 +26,5 @@ export const postAuthChangePasswordMutationRequestSchema = z.object({
 });
 
 export const postAuthChangePasswordMutationResponseSchema = z.lazy(
-  () => postAuthChangePassword200Schema
+  () => postAuthChangePassword200Schema,
 );

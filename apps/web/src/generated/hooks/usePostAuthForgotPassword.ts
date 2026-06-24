@@ -30,7 +30,7 @@ export type PostAuthForgotPasswordMutationKey = ReturnType<
 export function postAuthForgotPasswordMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostAuthForgotPasswordMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postAuthForgotPasswordMutationKey();
   return mutationOptions<
@@ -61,7 +61,7 @@ export function usePostAuthForgotPassword<TContext>(
     client?: Partial<RequestConfig<PostAuthForgotPasswordMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -69,7 +69,7 @@ export function usePostAuthForgotPassword<TContext>(
     mutationOptions.mutationKey ?? postAuthForgotPasswordMutationKey();
 
   const baseOptions = postAuthForgotPasswordMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PostAuthForgotPasswordMutationResponse,
     ResponseErrorConfig<Error>,
@@ -88,7 +88,7 @@ export function usePostAuthForgotPassword<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostAuthForgotPasswordMutationResponse,
     ResponseErrorConfig<Error>,

@@ -23,7 +23,7 @@ export const getUploadFilesQueryKey = () => [{ url: "/upload/files" }] as const;
 export type GetUploadFilesQueryKey = ReturnType<typeof getUploadFilesQueryKey>;
 
 export function getUploadFilesQueryOptions(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUploadFilesQueryKey();
   return queryOptions<
@@ -45,7 +45,7 @@ export function getUploadFilesQueryOptions(
 export function useGetUploadFiles<
   TData = GetUploadFilesQueryResponse,
   TQueryData = GetUploadFilesQueryResponse,
-  TQueryKey extends QueryKey = GetUploadFilesQueryKey
+  TQueryKey extends QueryKey = GetUploadFilesQueryKey,
 >(
   options: {
     query?: Partial<
@@ -58,7 +58,7 @@ export function useGetUploadFiles<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -70,7 +70,7 @@ export function useGetUploadFiles<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

@@ -16,5 +16,5 @@ export const getUploadFilesIdPathParamsSchema = z.object({
 export const getUploadFilesId200Schema = z.lazy(() => uploadFileSchema);
 
 export const getUploadFilesIdQueryResponseSchema = z.lazy(
-  () => getUploadFilesId200Schema
+  () => getUploadFilesId200Schema,
 );

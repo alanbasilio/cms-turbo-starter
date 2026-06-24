@@ -32,7 +32,6 @@ export type { PostAuthLocalRegisterMutationKey } from "./hooks/usePostAuthLocalR
 export type { PostAuthResetPasswordMutationKey } from "./hooks/usePostAuthResetPassword.ts";
 export type { PostAuthSendEmailConfirmationMutationKey } from "./hooks/usePostAuthSendEmailConfirmation.ts";
 export type { PostUploadMutationKey } from "./hooks/usePostUpload.ts";
-export type { PostUploadIdIdMutationKey } from "./hooks/usePostUploadIdId.ts";
 export type { PostUsersMutationKey } from "./hooks/usePostUsers.ts";
 export type { PostUsersPermissionsRolesMutationKey } from "./hooks/usePostUsersPermissionsRoles.ts";
 export type { PutUsersIdMutationKey } from "./hooks/usePutUsersId.ts";
@@ -186,13 +185,6 @@ export type {
   PostUploadMutationResponse,
 } from "./models/PostUpload.ts";
 export type {
-  PostUploadId200,
-  PostUploadIdIdMutation,
-  PostUploadIdMutationRequest,
-  PostUploadIdMutationResponse,
-  PostUploadIdQueryParams,
-} from "./models/PostUploadIdId.ts";
-export type {
   PostUsers201,
   PostUsersError,
   PostUsersMutation,
@@ -252,38 +244,10 @@ export { postAuthLocalRegister } from "./clients/postAuthLocalRegister.ts";
 export { postAuthResetPassword } from "./clients/postAuthResetPassword.ts";
 export { postAuthSendEmailConfirmation } from "./clients/postAuthSendEmailConfirmation.ts";
 export { postUpload } from "./clients/postUpload.ts";
-export { postUploadIdId } from "./clients/postUploadIdId.ts";
 export { postUsers } from "./clients/postUsers.ts";
 export { postUsersPermissionsRoles } from "./clients/postUsersPermissionsRoles.ts";
 export { putUsersId } from "./clients/putUsersId.ts";
 export { putUsersPermissionsRolesRole } from "./clients/putUsersPermissionsRolesRole.ts";
-export { deleteUploadFilesId } from "./cypress/deleteUploadFilesId.ts";
-export { deleteUsersId } from "./cypress/deleteUsersId.ts";
-export { deleteUsersPermissionsRolesRole } from "./cypress/deleteUsersPermissionsRolesRole.ts";
-export { getAuthEmailConfirmation } from "./cypress/getAuthEmailConfirmation.ts";
-export { getAuthProviderCallback } from "./cypress/getAuthProviderCallback.ts";
-export { getConnectProvider } from "./cypress/getConnectProvider.ts";
-export { getUploadFiles } from "./cypress/getUploadFiles.ts";
-export { getUploadFilesId } from "./cypress/getUploadFilesId.ts";
-export { getUsers } from "./cypress/getUsers.ts";
-export { getUsersCount } from "./cypress/getUsersCount.ts";
-export { getUsersId } from "./cypress/getUsersId.ts";
-export { getUsersMe } from "./cypress/getUsersMe.ts";
-export { getUsersPermissionsPermissions } from "./cypress/getUsersPermissionsPermissions.ts";
-export { getUsersPermissionsRoles } from "./cypress/getUsersPermissionsRoles.ts";
-export { getUsersPermissionsRolesId } from "./cypress/getUsersPermissionsRolesId.ts";
-export { postAuthChangePassword } from "./cypress/postAuthChangePassword.ts";
-export { postAuthForgotPassword } from "./cypress/postAuthForgotPassword.ts";
-export { postAuthLocal } from "./cypress/postAuthLocal.ts";
-export { postAuthLocalRegister } from "./cypress/postAuthLocalRegister.ts";
-export { postAuthResetPassword } from "./cypress/postAuthResetPassword.ts";
-export { postAuthSendEmailConfirmation } from "./cypress/postAuthSendEmailConfirmation.ts";
-export { postUpload } from "./cypress/postUpload.ts";
-export { postUploadIdId } from "./cypress/postUploadIdId.ts";
-export { postUsers } from "./cypress/postUsers.ts";
-export { postUsersPermissionsRoles } from "./cypress/postUsersPermissionsRoles.ts";
-export { putUsersId } from "./cypress/putUsersId.ts";
-export { putUsersPermissionsRolesRole } from "./cypress/putUsersPermissionsRolesRole.ts";
 export { deleteUploadFilesIdMutationKey } from "./hooks/useDeleteUploadFilesId.ts";
 export { deleteUploadFilesIdMutationOptions } from "./hooks/useDeleteUploadFilesId.ts";
 export { useDeleteUploadFilesId } from "./hooks/useDeleteUploadFilesId.ts";
@@ -386,9 +350,6 @@ export { usePostAuthSendEmailConfirmation } from "./hooks/usePostAuthSendEmailCo
 export { postUploadMutationKey } from "./hooks/usePostUpload.ts";
 export { postUploadMutationOptions } from "./hooks/usePostUpload.ts";
 export { usePostUpload } from "./hooks/usePostUpload.ts";
-export { postUploadIdIdMutationKey } from "./hooks/usePostUploadIdId.ts";
-export { postUploadIdIdMutationOptions } from "./hooks/usePostUploadIdId.ts";
-export { usePostUploadIdId } from "./hooks/usePostUploadIdId.ts";
 export { postUsersMutationKey } from "./hooks/usePostUsers.ts";
 export { postUsersMutationOptions } from "./hooks/usePostUsers.ts";
 export { usePostUsers } from "./hooks/usePostUsers.ts";
@@ -401,167 +362,6 @@ export { usePutUsersId } from "./hooks/usePutUsersId.ts";
 export { putUsersPermissionsRolesRoleMutationKey } from "./hooks/usePutUsersPermissionsRolesRole.ts";
 export { putUsersPermissionsRolesRoleMutationOptions } from "./hooks/usePutUsersPermissionsRolesRole.ts";
 export { usePutUsersPermissionsRolesRole } from "./hooks/usePutUsersPermissionsRolesRole.ts";
-export {
-  createDeleteUploadFilesId200,
-  createDeleteUploadFilesIdMutationResponse,
-  createDeleteUploadFilesIdPathParams,
-} from "./mocks/createDeleteUploadFilesId.ts";
-export {
-  createDeleteUsersId200,
-  createDeleteUsersIdError,
-  createDeleteUsersIdMutationResponse,
-  createDeleteUsersIdPathParams,
-} from "./mocks/createDeleteUsersId.ts";
-export {
-  createDeleteUsersPermissionsRolesRole200,
-  createDeleteUsersPermissionsRolesRoleError,
-  createDeleteUsersPermissionsRolesRoleMutationResponse,
-  createDeleteUsersPermissionsRolesRolePathParams,
-} from "./mocks/createDeleteUsersPermissionsRolesRole.ts";
-export { createError } from "./mocks/createError.ts";
-export {
-  createGetAuthEmailConfirmation301,
-  createGetAuthEmailConfirmationError,
-  createGetAuthEmailConfirmationQueryParams,
-  createGetAuthEmailConfirmationQueryResponse,
-} from "./mocks/createGetAuthEmailConfirmation.ts";
-export {
-  createGetAuthProviderCallback200,
-  createGetAuthProviderCallbackError,
-  createGetAuthProviderCallbackPathParams,
-  createGetAuthProviderCallbackQueryResponse,
-} from "./mocks/createGetAuthProviderCallback.ts";
-export {
-  createGetConnectProvider301,
-  createGetConnectProviderError,
-  createGetConnectProviderPathParams,
-  createGetConnectProviderQueryResponse,
-} from "./mocks/createGetConnectProvider.ts";
-export {
-  createGetUploadFiles200,
-  createGetUploadFilesQueryResponse,
-} from "./mocks/createGetUploadFiles.ts";
-export {
-  createGetUploadFilesId200,
-  createGetUploadFilesIdPathParams,
-  createGetUploadFilesIdQueryResponse,
-} from "./mocks/createGetUploadFilesId.ts";
-export {
-  createGetUsers200,
-  createGetUsersError,
-  createGetUsersQueryResponse,
-} from "./mocks/createGetUsers.ts";
-export {
-  createGetUsersCount200,
-  createGetUsersCountError,
-  createGetUsersCountQueryResponse,
-} from "./mocks/createGetUsersCount.ts";
-export {
-  createGetUsersId200,
-  createGetUsersIdError,
-  createGetUsersIdPathParams,
-  createGetUsersIdQueryResponse,
-} from "./mocks/createGetUsersId.ts";
-export {
-  createGetUsersMe200,
-  createGetUsersMeError,
-  createGetUsersMeQueryResponse,
-} from "./mocks/createGetUsersMe.ts";
-export {
-  createGetUsersPermissions200,
-  createGetUsersPermissionsError,
-  createGetUsersPermissionsQueryResponse,
-} from "./mocks/createGetUsersPermissionsPermissions.ts";
-export {
-  createGetUsersPermissionsRoles200,
-  createGetUsersPermissionsRolesError,
-  createGetUsersPermissionsRolesQueryResponse,
-} from "./mocks/createGetUsersPermissionsRoles.ts";
-export {
-  createGetUsersPermissionsRolesId200,
-  createGetUsersPermissionsRolesIdError,
-  createGetUsersPermissionsRolesIdPathParams,
-  createGetUsersPermissionsRolesIdQueryResponse,
-} from "./mocks/createGetUsersPermissionsRolesId.ts";
-export {
-  createPostAuthChangePassword200,
-  createPostAuthChangePasswordError,
-  createPostAuthChangePasswordMutationRequest,
-  createPostAuthChangePasswordMutationResponse,
-} from "./mocks/createPostAuthChangePassword.ts";
-export {
-  createPostAuthForgotPassword200,
-  createPostAuthForgotPasswordError,
-  createPostAuthForgotPasswordMutationRequest,
-  createPostAuthForgotPasswordMutationResponse,
-} from "./mocks/createPostAuthForgotPassword.ts";
-export {
-  createPostAuthLocal200,
-  createPostAuthLocalError,
-  createPostAuthLocalMutationRequest,
-  createPostAuthLocalMutationResponse,
-} from "./mocks/createPostAuthLocal.ts";
-export {
-  createPostAuthLocalRegister200,
-  createPostAuthLocalRegisterError,
-  createPostAuthLocalRegisterMutationRequest,
-  createPostAuthLocalRegisterMutationResponse,
-} from "./mocks/createPostAuthLocalRegister.ts";
-export {
-  createPostAuthResetPassword200,
-  createPostAuthResetPasswordError,
-  createPostAuthResetPasswordMutationRequest,
-  createPostAuthResetPasswordMutationResponse,
-} from "./mocks/createPostAuthResetPassword.ts";
-export {
-  createPostAuthSendEmailConfirmation200,
-  createPostAuthSendEmailConfirmationError,
-  createPostAuthSendEmailConfirmationMutationRequest,
-  createPostAuthSendEmailConfirmationMutationResponse,
-} from "./mocks/createPostAuthSendEmailConfirmation.ts";
-export {
-  createPostUpload200,
-  createPostUploadMutationRequest,
-  createPostUploadMutationResponse,
-} from "./mocks/createPostUpload.ts";
-export {
-  createPostUploadId200,
-  createPostUploadIdMutationRequest,
-  createPostUploadIdMutationResponse,
-  createPostUploadIdQueryParams,
-} from "./mocks/createPostUploadIdId.ts";
-export {
-  createPostUsers201,
-  createPostUsersError,
-  createPostUsersMutationRequest,
-  createPostUsersMutationResponse,
-} from "./mocks/createPostUsers.ts";
-export {
-  createPostUsersPermissionsRoles200,
-  createPostUsersPermissionsRolesError,
-  createPostUsersPermissionsRolesMutationRequest,
-  createPostUsersPermissionsRolesMutationResponse,
-} from "./mocks/createPostUsersPermissionsRoles.ts";
-export {
-  createPutUsersId200,
-  createPutUsersIdError,
-  createPutUsersIdMutationRequest,
-  createPutUsersIdMutationResponse,
-  createPutUsersIdPathParams,
-} from "./mocks/createPutUsersId.ts";
-export {
-  createPutUsersPermissionsRolesRole200,
-  createPutUsersPermissionsRolesRoleError,
-  createPutUsersPermissionsRolesRoleMutationRequest,
-  createPutUsersPermissionsRolesRoleMutationResponse,
-  createPutUsersPermissionsRolesRolePathParams,
-} from "./mocks/createPutUsersPermissionsRolesRole.ts";
-export { createUploadFile } from "./mocks/createUploadFile.ts";
-export { createUsersPermissionsPermissionsTree } from "./mocks/createUsersPermissionsPermissionsTree.ts";
-export { createUsersPermissionsRole } from "./mocks/createUsersPermissionsRole.ts";
-export { createUsersPermissionsRoleRequest } from "./mocks/createUsersPermissionsRoleRequest.ts";
-export { createUsersPermissionsUser } from "./mocks/createUsersPermissionsUser.ts";
-export { createUsersPermissionsUserRegistration } from "./mocks/createUsersPermissionsUserRegistration.ts";
 export { deleteUsersPermissionsRolesRole200OkEnum } from "./models/DeleteUsersPermissionsRolesRole.ts";
 export { postAuthForgotPassword200OkEnum } from "./models/PostAuthForgotPassword.ts";
 export { postAuthSendEmailConfirmation200SentEnum } from "./models/PostAuthSendEmailConfirmation.ts";
@@ -685,12 +485,6 @@ export {
   postAuthSendEmailConfirmationMutationRequestSchema,
   postAuthSendEmailConfirmationMutationResponseSchema,
 } from "./zod/postAuthSendEmailConfirmationSchema.ts";
-export {
-  postUploadId200Schema,
-  postUploadIdMutationRequestSchema,
-  postUploadIdMutationResponseSchema,
-  postUploadIdQueryParamsSchema,
-} from "./zod/postUploadIdIdSchema.ts";
 export {
   postUpload200Schema,
   postUploadMutationRequestSchema,

@@ -26,5 +26,5 @@ export const getUsersPermissionsRolesId200Schema = z.object({
 export const getUsersPermissionsRolesIdErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersPermissionsRolesIdQueryResponseSchema = z.lazy(
-  () => getUsersPermissionsRolesId200Schema
+  () => getUsersPermissionsRolesId200Schema,
 );

@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @description Returns an array of users
  */
 export const getUsers200Schema = z.array(
-  z.lazy(() => usersPermissionsUserSchema)
+  z.lazy(() => usersPermissionsUserSchema),
 );
 
 /**

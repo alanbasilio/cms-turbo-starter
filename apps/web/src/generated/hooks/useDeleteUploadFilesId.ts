@@ -28,7 +28,7 @@ export type DeleteUploadFilesIdMutationKey = ReturnType<
 >;
 
 export function deleteUploadFilesIdMutationOptions<TContext = unknown>(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const mutationKey = deleteUploadFilesIdMutationKey();
   return mutationOptions<
@@ -56,7 +56,7 @@ export function useDeleteUploadFilesId<TContext>(
       TContext
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -64,7 +64,7 @@ export function useDeleteUploadFilesId<TContext>(
     mutationOptions.mutationKey ?? deleteUploadFilesIdMutationKey();
 
   const baseOptions = deleteUploadFilesIdMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     DeleteUploadFilesIdMutationResponse,
     ResponseErrorConfig<Error>,
@@ -83,7 +83,7 @@ export function useDeleteUploadFilesId<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     DeleteUploadFilesIdMutationResponse,
     ResponseErrorConfig<Error>,

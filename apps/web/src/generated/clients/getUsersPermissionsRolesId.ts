@@ -15,7 +15,7 @@ import type {
 } from "@kubb/plugin-client/clients/axios";
 
 function getGetUsersPermissionsRolesIdUrl(
-  id: GetUsersPermissionsRolesIdPathParams["id"]
+  id: GetUsersPermissionsRolesIdPathParams["id"],
 ) {
   const res = { method: "GET", url: `/users-permissions/roles/${id}` as const };
   return res;
@@ -27,7 +27,7 @@ function getGetUsersPermissionsRolesIdUrl(
  */
 export async function getUsersPermissionsRolesId(
   id: GetUsersPermissionsRolesIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

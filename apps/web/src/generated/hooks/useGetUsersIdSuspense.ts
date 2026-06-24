@@ -22,7 +22,7 @@ import { getUsersId } from "../clients/getUsersId.ts";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
 export const getUsersIdSuspenseQueryKey = (
-  id: GetUsersIdPathParams["id"] | undefined
+  id: GetUsersIdPathParams["id"] | undefined,
 ) => [{ url: "/users/:id", params: { id: id } }] as const;
 
 export type GetUsersIdSuspenseQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetUsersIdSuspenseQueryKey = ReturnType<
 
 export function getUsersIdSuspenseQueryOptions(
   id: GetUsersIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersIdSuspenseQueryKey(id);
   return queryOptions<
@@ -53,7 +53,7 @@ export function getUsersIdSuspenseQueryOptions(
  */
 export function useGetUsersIdSuspense<
   TData = GetUsersIdQueryResponse,
-  TQueryKey extends QueryKey = GetUsersIdSuspenseQueryKey
+  TQueryKey extends QueryKey = GetUsersIdSuspenseQueryKey,
 >(
   id: GetUsersIdPathParams["id"],
   options: {
@@ -66,7 +66,7 @@ export function useGetUsersIdSuspense<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -78,7 +78,7 @@ export function useGetUsersIdSuspense<
       ...resolvedOptions,
       queryKey,
     } as unknown as UseSuspenseQueryOptions,
-    queryClient
+    queryClient,
   ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

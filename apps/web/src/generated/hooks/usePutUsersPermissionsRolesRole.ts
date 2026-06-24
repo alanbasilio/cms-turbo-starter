@@ -31,7 +31,7 @@ export type PutUsersPermissionsRolesRoleMutationKey = ReturnType<
 export function putUsersPermissionsRolesRoleMutationOptions<TContext = unknown>(
   config: Partial<
     RequestConfig<PutUsersPermissionsRolesRoleMutationRequest>
-  > & { client?: Client } = {}
+  > & { client?: Client } = {},
 ) {
   const mutationKey = putUsersPermissionsRolesRoleMutationKey();
   return mutationOptions<
@@ -68,7 +68,7 @@ export function usePutUsersPermissionsRolesRole<TContext>(
     client?: Partial<
       RequestConfig<PutUsersPermissionsRolesRoleMutationRequest>
     > & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -76,7 +76,7 @@ export function usePutUsersPermissionsRolesRole<TContext>(
     mutationOptions.mutationKey ?? putUsersPermissionsRolesRoleMutationKey();
 
   const baseOptions = putUsersPermissionsRolesRoleMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PutUsersPermissionsRolesRoleMutationResponse,
     ResponseErrorConfig<Error>,
@@ -101,7 +101,7 @@ export function usePutUsersPermissionsRolesRole<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PutUsersPermissionsRolesRoleMutationResponse,
     ResponseErrorConfig<Error>,

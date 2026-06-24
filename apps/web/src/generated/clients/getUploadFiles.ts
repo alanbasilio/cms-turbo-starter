@@ -20,7 +20,7 @@ function getGetUploadFilesUrl() {
  * {@link /upload/files}
  */
 export async function getUploadFiles(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

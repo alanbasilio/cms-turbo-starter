@@ -17,8 +17,8 @@ export const getUsersPermissionsRoles200Schema = z.object({
         usersPermissionsRoleSchema.and(
           z.object({
             nb_users: z.optional(z.number()),
-          })
-        )
+          }),
+        ),
       )
       .optional();
   },
@@ -30,5 +30,5 @@ export const getUsersPermissionsRoles200Schema = z.object({
 export const getUsersPermissionsRolesErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersPermissionsRolesQueryResponseSchema = z.lazy(
-  () => getUsersPermissionsRoles200Schema
+  () => getUsersPermissionsRoles200Schema,
 );

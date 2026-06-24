@@ -22,7 +22,7 @@ import { getAuthProviderCallback } from "../clients/getAuthProviderCallback.ts";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export const getAuthProviderCallbackQueryKey = (
-  provider: GetAuthProviderCallbackPathParams["provider"] | undefined
+  provider: GetAuthProviderCallbackPathParams["provider"] | undefined,
 ) =>
   [
     { url: "/auth/:provider/callback", params: { provider: provider } },
@@ -34,7 +34,7 @@ export type GetAuthProviderCallbackQueryKey = ReturnType<
 
 export function getAuthProviderCallbackQueryOptions(
   provider: GetAuthProviderCallbackPathParams["provider"] | undefined,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getAuthProviderCallbackQueryKey(provider);
   return queryOptions<
@@ -61,7 +61,7 @@ export function getAuthProviderCallbackQueryOptions(
 export function useGetAuthProviderCallback<
   TData = GetAuthProviderCallbackQueryResponse,
   TQueryData = GetAuthProviderCallbackQueryResponse,
-  TQueryKey extends QueryKey = GetAuthProviderCallbackQueryKey
+  TQueryKey extends QueryKey = GetAuthProviderCallbackQueryKey,
 >(
   provider: GetAuthProviderCallbackPathParams["provider"] | undefined,
   options: {
@@ -75,7 +75,7 @@ export function useGetAuthProviderCallback<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -88,7 +88,7 @@ export function useGetAuthProviderCallback<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

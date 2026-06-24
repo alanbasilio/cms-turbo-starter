@@ -22,7 +22,7 @@ import { getUsersPermissionsRolesId } from "../clients/getUsersPermissionsRolesI
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export const getUsersPermissionsRolesIdQueryKey = (
-  id: GetUsersPermissionsRolesIdPathParams["id"] | undefined
+  id: GetUsersPermissionsRolesIdPathParams["id"] | undefined,
 ) => [{ url: "/users-permissions/roles/:id", params: { id: id } }] as const;
 
 export type GetUsersPermissionsRolesIdQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetUsersPermissionsRolesIdQueryKey = ReturnType<
 
 export function getUsersPermissionsRolesIdQueryOptions(
   id: GetUsersPermissionsRolesIdPathParams["id"] | undefined,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersPermissionsRolesIdQueryKey(id);
   return queryOptions<
@@ -58,7 +58,7 @@ export function getUsersPermissionsRolesIdQueryOptions(
 export function useGetUsersPermissionsRolesId<
   TData = GetUsersPermissionsRolesIdQueryResponse,
   TQueryData = GetUsersPermissionsRolesIdQueryResponse,
-  TQueryKey extends QueryKey = GetUsersPermissionsRolesIdQueryKey
+  TQueryKey extends QueryKey = GetUsersPermissionsRolesIdQueryKey,
 >(
   id: GetUsersPermissionsRolesIdPathParams["id"] | undefined,
   options: {
@@ -72,7 +72,7 @@ export function useGetUsersPermissionsRolesId<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -85,7 +85,7 @@ export function useGetUsersPermissionsRolesId<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

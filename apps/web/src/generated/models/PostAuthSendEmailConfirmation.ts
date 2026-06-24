@@ -10,7 +10,7 @@ export const postAuthSendEmailConfirmation200SentEnum = {
 } as const;
 
 export type PostAuthSendEmailConfirmation200SentEnumKey =
-  typeof postAuthSendEmailConfirmation200SentEnum[keyof typeof postAuthSendEmailConfirmation200SentEnum];
+  (typeof postAuthSendEmailConfirmation200SentEnum)[keyof typeof postAuthSendEmailConfirmation200SentEnum];
 
 /**
  * @description Returns email and boolean to confirm email was sent

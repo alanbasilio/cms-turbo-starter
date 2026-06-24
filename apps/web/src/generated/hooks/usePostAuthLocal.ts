@@ -29,7 +29,7 @@ export type PostAuthLocalMutationKey = ReturnType<
 export function postAuthLocalMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostAuthLocalMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postAuthLocalMutationKey();
   return mutationOptions<
@@ -61,14 +61,14 @@ export function usePostAuthLocal<TContext>(
     client?: Partial<RequestConfig<PostAuthLocalMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
   const mutationKey = mutationOptions.mutationKey ?? postAuthLocalMutationKey();
 
   const baseOptions = postAuthLocalMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PostAuthLocalMutationResponse,
     ResponseErrorConfig<Error>,
@@ -87,7 +87,7 @@ export function usePostAuthLocal<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostAuthLocalMutationResponse,
     ResponseErrorConfig<Error>,

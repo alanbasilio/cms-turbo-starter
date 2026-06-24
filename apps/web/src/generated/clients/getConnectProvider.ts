@@ -15,7 +15,7 @@ import type {
 } from "@kubb/plugin-client/clients/axios";
 
 function getGetConnectProviderUrl(
-  provider: GetConnectProviderPathParams["provider"]
+  provider: GetConnectProviderPathParams["provider"],
 ) {
   const res = { method: "GET", url: `/connect/${provider}` as const };
   return res;
@@ -28,7 +28,7 @@ function getGetConnectProviderUrl(
  */
 export async function getConnectProvider(
   provider: GetConnectProviderPathParams["provider"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

@@ -22,7 +22,7 @@ import { getConnectProvider } from "../clients/getConnectProvider.ts";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export const getConnectProviderQueryKey = (
-  provider: GetConnectProviderPathParams["provider"] | undefined
+  provider: GetConnectProviderPathParams["provider"] | undefined,
 ) => [{ url: "/connect/:provider", params: { provider: provider } }] as const;
 
 export type GetConnectProviderQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetConnectProviderQueryKey = ReturnType<
 
 export function getConnectProviderQueryOptions(
   provider: GetConnectProviderPathParams["provider"] | undefined,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getConnectProviderQueryKey(provider);
   return queryOptions<
@@ -59,7 +59,7 @@ export function getConnectProviderQueryOptions(
 export function useGetConnectProvider<
   TData = GetConnectProviderQueryResponse,
   TQueryData = GetConnectProviderQueryResponse,
-  TQueryKey extends QueryKey = GetConnectProviderQueryKey
+  TQueryKey extends QueryKey = GetConnectProviderQueryKey,
 >(
   provider: GetConnectProviderPathParams["provider"] | undefined,
   options: {
@@ -73,7 +73,7 @@ export function useGetConnectProvider<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -86,7 +86,7 @@ export function useGetConnectProvider<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

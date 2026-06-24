@@ -28,7 +28,7 @@ export async function postAuthLocal(
   data: PostAuthLocalMutationRequest,
   config: Partial<RequestConfig<PostAuthLocalMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

@@ -29,7 +29,7 @@ export async function putUsersId(
   data: PutUsersIdMutationRequest,
   config: Partial<RequestConfig<PutUsersIdMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

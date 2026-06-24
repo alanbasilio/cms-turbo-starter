@@ -22,7 +22,7 @@ import { getUploadFilesId } from "../clients/getUploadFilesId.ts";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export const getUploadFilesIdQueryKey = (
-  id: GetUploadFilesIdPathParams["id"] | undefined
+  id: GetUploadFilesIdPathParams["id"] | undefined,
 ) => [{ url: "/upload/files/:id", params: { id: id } }] as const;
 
 export type GetUploadFilesIdQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetUploadFilesIdQueryKey = ReturnType<
 
 export function getUploadFilesIdQueryOptions(
   id: GetUploadFilesIdPathParams["id"] | undefined,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUploadFilesIdQueryKey(id);
   return queryOptions<
@@ -57,7 +57,7 @@ export function getUploadFilesIdQueryOptions(
 export function useGetUploadFilesId<
   TData = GetUploadFilesIdQueryResponse,
   TQueryData = GetUploadFilesIdQueryResponse,
-  TQueryKey extends QueryKey = GetUploadFilesIdQueryKey
+  TQueryKey extends QueryKey = GetUploadFilesIdQueryKey,
 >(
   id: GetUploadFilesIdPathParams["id"] | undefined,
   options: {
@@ -71,7 +71,7 @@ export function useGetUploadFilesId<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -83,7 +83,7 @@ export function useGetUploadFilesId<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

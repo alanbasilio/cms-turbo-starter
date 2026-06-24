@@ -27,7 +27,7 @@ export type PostUploadMutationKey = ReturnType<typeof postUploadMutationKey>;
 export function postUploadMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostUploadMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postUploadMutationKey();
   return mutationOptions<
@@ -58,7 +58,7 @@ export function usePostUpload<TContext>(
     client?: Partial<RequestConfig<PostUploadMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -82,7 +82,7 @@ export function usePostUpload<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostUploadMutationResponse,
     ResponseErrorConfig<Error>,

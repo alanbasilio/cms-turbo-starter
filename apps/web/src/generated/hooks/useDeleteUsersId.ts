@@ -27,7 +27,7 @@ export type DeleteUsersIdMutationKey = ReturnType<
 >;
 
 export function deleteUsersIdMutationOptions<TContext = unknown>(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const mutationKey = deleteUsersIdMutationKey();
   return mutationOptions<
@@ -56,14 +56,14 @@ export function useDeleteUsersId<TContext>(
       TContext
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
   const mutationKey = mutationOptions.mutationKey ?? deleteUsersIdMutationKey();
 
   const baseOptions = deleteUsersIdMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     DeleteUsersIdMutationResponse,
     ResponseErrorConfig<Error>,
@@ -82,7 +82,7 @@ export function useDeleteUsersId<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     DeleteUsersIdMutationResponse,
     ResponseErrorConfig<Error>,

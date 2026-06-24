@@ -24,6 +24,12 @@
       "cache": false,
       "persistent": true
     },
+    "typecheck": {
+      "dependsOn": ["generate"]
+    },
+    "test": {
+      "dependsOn": ["generate"]
+    },
     "lint": {},
     "format": {
       "cache": false

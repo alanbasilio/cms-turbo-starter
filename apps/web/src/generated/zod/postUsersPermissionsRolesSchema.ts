@@ -29,5 +29,5 @@ export const postUsersPermissionsRolesMutationRequestSchema = z.object({
 });
 
 export const postUsersPermissionsRolesMutationResponseSchema = z.lazy(
-  () => postUsersPermissionsRoles200Schema
+  () => postUsersPermissionsRoles200Schema,
 );

@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @description Successful registration
  */
 export const postAuthLocalRegister200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -26,5 +26,5 @@ export const postAuthLocalRegisterMutationRequestSchema = z.object({
 });
 
 export const postAuthLocalRegisterMutationResponseSchema = z.lazy(
-  () => postAuthLocalRegister200Schema
+  () => postAuthLocalRegister200Schema,
 );

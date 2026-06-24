@@ -22,5 +22,5 @@ export const deleteUsersId200Schema = z.lazy(() => usersPermissionsUserSchema);
 export const deleteUsersIdErrorSchema = z.lazy(() => errorSchema);
 
 export const deleteUsersIdMutationResponseSchema = z.lazy(
-  () => deleteUsersId200Schema
+  () => deleteUsersId200Schema,
 );

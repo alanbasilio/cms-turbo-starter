@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @description Connection
  */
 export const postAuthLocal200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -25,5 +25,5 @@ export const postAuthLocalMutationRequestSchema = z.object({
 });
 
 export const postAuthLocalMutationResponseSchema = z.lazy(
-  () => postAuthLocal200Schema
+  () => postAuthLocal200Schema,
 );

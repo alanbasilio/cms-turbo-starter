@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "generate": "kubb generate",
+    "typecheck": "tsc --noEmit",
     "lint": "biome check",
     "format": "biome format --write"
   },
@@ -32,8 +33,6 @@
     "@kubb/cli": "^4.39.2",
     "@kubb/core": "^4.39.2",
     "@kubb/plugin-client": "^4.39.2",
-    "@kubb/plugin-cypress": "^4.39.2",
-    "@kubb/plugin-faker": "^4.39.2",
     "@kubb/plugin-oas": "^4.39.2",
     "@kubb/plugin-react-query": "^4.39.2",
     "@kubb/plugin-ts": "^4.39.2",

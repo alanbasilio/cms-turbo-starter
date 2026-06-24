@@ -15,7 +15,7 @@ export const getAuthProviderCallbackPathParamsSchema = z.object({
  * @description Returns a jwt token and user info
  */
 export const getAuthProviderCallback200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -24,5 +24,5 @@ export const getAuthProviderCallback200Schema = z.lazy(
 export const getAuthProviderCallbackErrorSchema = z.lazy(() => errorSchema);
 
 export const getAuthProviderCallbackQueryResponseSchema = z.lazy(
-  () => getAuthProviderCallback200Schema
+  () => getAuthProviderCallback200Schema,
 );

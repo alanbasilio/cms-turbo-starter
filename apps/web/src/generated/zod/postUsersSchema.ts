@@ -18,7 +18,7 @@ export const postUsers201Schema = z
       get role() {
         return usersPermissionsRoleSchema.optional();
       },
-    })
+    }),
   );
 
 /**

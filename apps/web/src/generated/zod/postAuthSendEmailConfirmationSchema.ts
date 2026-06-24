@@ -18,7 +18,7 @@ export const postAuthSendEmailConfirmation200Schema = z.object({
  * @description Error
  */
 export const postAuthSendEmailConfirmationErrorSchema = z.lazy(
-  () => errorSchema
+  () => errorSchema,
 );
 
 export const postAuthSendEmailConfirmationMutationRequestSchema = z.object({
@@ -26,5 +26,5 @@ export const postAuthSendEmailConfirmationMutationRequestSchema = z.object({
 });
 
 export const postAuthSendEmailConfirmationMutationResponseSchema = z.lazy(
-  () => postAuthSendEmailConfirmation200Schema
+  () => postAuthSendEmailConfirmation200Schema,
 );

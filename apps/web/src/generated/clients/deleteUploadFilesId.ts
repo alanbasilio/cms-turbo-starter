@@ -24,7 +24,7 @@ function getDeleteUploadFilesIdUrl(id: DeleteUploadFilesIdPathParams["id"]) {
  */
 export async function deleteUploadFilesId(
   id: DeleteUploadFilesIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 
