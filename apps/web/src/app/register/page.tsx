@@ -24,6 +24,7 @@ export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const mutation = usePostAuthLocalRegister();
@@ -35,6 +36,10 @@ export default function RegisterPage() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
+    if (password !== confirmPassword) {
+      setError("As senhas não coincidem.");
+      return;
+    }
     mutation.mutate(
       { data: { username, email, password } },
       {
@@ -96,6 +101,27 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="confirmPassword">Confirmar senha</Label>
+              <Input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={6}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                aria-invalid={
+                  confirmPassword.length > 0 && confirmPassword !== password
+                }
+              />
+              {confirmPassword.length > 0 && confirmPassword !== password ? (
+                <p className="text-sm text-destructive">
+                  As senhas não coincidem.
+                </p>
+              ) : null}
+            </div>
             {error ? (
               <p className="text-sm text-destructive" role="alert">
                 {error}
@@ -106,7 +132,7 @@ export default function RegisterPage() {
             <Button
               type="submit"
               className="w-full"
-              disabled={mutation.isPending}
+              disabled={mutation.isPending || password !== confirmPassword}
             >
               {mutation.isPending ? "Criando conta..." : "Criar conta"}
             </Button>
