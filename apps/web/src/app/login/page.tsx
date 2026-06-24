@@ -1,42 +1,35 @@
 "use client";
 
-import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { type FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { AuthCard } from "@/src/components/auth/auth-card";
+import { TextField } from "@/src/components/auth/text-field";
+import { useRedirectIfAuthenticated } from "@/src/components/auth/use-redirect-if-authenticated";
 import { useAuth } from "@/src/components/auth-provider";
-import { Button } from "@/src/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
 import { usePostAuthLocal } from "@/src/generated/hooks/usePostAuthLocal";
 import { getApiErrorMessage } from "@/src/lib/api-client";
+import { type LoginValues, loginSchema } from "@/src/lib/auth-schemas";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { status, login } = useAuth();
-  const [identifier, setIdentifier] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  useRedirectIfAuthenticated();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
 
   const mutation = usePostAuthLocal();
 
-  // Already signed in? Skip the form.
-  useEffect(() => {
-    if (status === "authenticated") router.replace("/");
-  }, [status, router]);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const onSubmit = handleSubmit((values) => {
     setError(null);
     mutation.mutate(
-      { data: { identifier, password } },
+      { data: values },
       {
         onSuccess: (data) => {
           if (data.jwt) {
@@ -49,63 +42,36 @@ export default function LoginPage() {
         onError: (err) => setError(getApiErrorMessage(err)),
       },
     );
-  }
+  });
 
   return (
-    <main className="flex min-h-full flex-1 items-center justify-center p-6">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-lg">Entrar</CardTitle>
-          <CardDescription>Acesse sua conta para continuar.</CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="identifier">E-mail ou usuário</Label>
-              <Input
-                id="identifier"
-                name="identifier"
-                autoComplete="username"
-                required
-                value={identifier}
-                onChange={(e) => setIdentifier(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            {error ? (
-              <p className="text-sm text-destructive" role="alert">
-                {error}
-              </p>
-            ) : null}
-          </CardContent>
-          <CardFooter className="mt-6 flex-col gap-3">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={mutation.isPending}
-            >
-              {mutation.isPending ? "Entrando..." : "Entrar"}
-            </Button>
-            <p className="text-sm text-muted-foreground">
-              Não tem conta?{" "}
-              <Link href="/register" className="text-primary hover:underline">
-                Criar conta
-              </Link>
-            </p>
-          </CardFooter>
-        </form>
-      </Card>
-    </main>
+    <AuthCard
+      title="Entrar"
+      description="Acesse sua conta para continuar."
+      onSubmit={onSubmit}
+      error={error}
+      isPending={mutation.isPending}
+      submitLabel="Entrar"
+      pendingLabel="Entrando..."
+      footerPrompt="Não tem conta?"
+      footerHref="/register"
+      footerLinkLabel="Criar conta"
+    >
+      <TextField
+        id="identifier"
+        label="E-mail ou usuário"
+        autoComplete="username"
+        error={errors.identifier?.message}
+        {...register("identifier")}
+      />
+      <TextField
+        id="password"
+        label="Senha"
+        type="password"
+        autoComplete="current-password"
+        error={errors.password?.message}
+        {...register("password")}
+      />
+    </AuthCard>
   );
 }

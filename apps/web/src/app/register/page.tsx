@@ -1,45 +1,33 @@
 "use client";
 
-import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { type FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { AuthCard } from "@/src/components/auth/auth-card";
+import { TextField } from "@/src/components/auth/text-field";
+import { useRedirectIfAuthenticated } from "@/src/components/auth/use-redirect-if-authenticated";
 import { useAuth } from "@/src/components/auth-provider";
-import { Button } from "@/src/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
 import { usePostAuthLocalRegister } from "@/src/generated/hooks/usePostAuthLocalRegister";
 import { getApiErrorMessage } from "@/src/lib/api-client";
+import { type RegisterValues, registerSchema } from "@/src/lib/auth-schemas";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { status, login } = useAuth();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  useRedirectIfAuthenticated();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterValues>({ resolver: zodResolver(registerSchema) });
 
   const mutation = usePostAuthLocalRegister();
 
-  useEffect(() => {
-    if (status === "authenticated") router.replace("/");
-  }, [status, router]);
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const onSubmit = handleSubmit(({ username, email, password }) => {
     setError(null);
-    if (password !== confirmPassword) {
-      setError("As senhas não coincidem.");
-      return;
-    }
     mutation.mutate(
       { data: { username, email, password } },
       {
@@ -54,97 +42,52 @@ export default function RegisterPage() {
         onError: (err) => setError(getApiErrorMessage(err)),
       },
     );
-  }
+  });
 
   return (
-    <main className="flex min-h-full flex-1 items-center justify-center p-6">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-lg">Criar conta</CardTitle>
-          <CardDescription>Preencha os dados para começar.</CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="username">Usuário</Label>
-              <Input
-                id="username"
-                name="username"
-                autoComplete="username"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="email">E-mail</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={6}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="confirmPassword">Confirmar senha</Label>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={6}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                aria-invalid={
-                  confirmPassword.length > 0 && confirmPassword !== password
-                }
-              />
-              {confirmPassword.length > 0 && confirmPassword !== password ? (
-                <p className="text-sm text-destructive">
-                  As senhas não coincidem.
-                </p>
-              ) : null}
-            </div>
-            {error ? (
-              <p className="text-sm text-destructive" role="alert">
-                {error}
-              </p>
-            ) : null}
-          </CardContent>
-          <CardFooter className="mt-6 flex-col gap-3">
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={mutation.isPending || password !== confirmPassword}
-            >
-              {mutation.isPending ? "Criando conta..." : "Criar conta"}
-            </Button>
-            <p className="text-sm text-muted-foreground">
-              Já tem conta?{" "}
-              <Link href="/login" className="text-primary hover:underline">
-                Entrar
-              </Link>
-            </p>
-          </CardFooter>
-        </form>
-      </Card>
-    </main>
+    <AuthCard
+      title="Criar conta"
+      description="Preencha os dados para começar."
+      onSubmit={onSubmit}
+      error={error}
+      isPending={mutation.isPending}
+      submitLabel="Criar conta"
+      pendingLabel="Criando conta..."
+      footerPrompt="Já tem conta?"
+      footerHref="/login"
+      footerLinkLabel="Entrar"
+    >
+      <TextField
+        id="username"
+        label="Usuário"
+        autoComplete="username"
+        error={errors.username?.message}
+        {...register("username")}
+      />
+      <TextField
+        id="email"
+        label="E-mail"
+        type="email"
+        autoComplete="email"
+        error={errors.email?.message}
+        {...register("email")}
+      />
+      <TextField
+        id="password"
+        label="Senha"
+        type="password"
+        autoComplete="new-password"
+        error={errors.password?.message}
+        {...register("password")}
+      />
+      <TextField
+        id="confirmPassword"
+        label="Confirmar senha"
+        type="password"
+        autoComplete="new-password"
+        error={errors.confirmPassword?.message}
+        {...register("confirmPassword")}
+      />
+    </AuthCard>
   );
 }
