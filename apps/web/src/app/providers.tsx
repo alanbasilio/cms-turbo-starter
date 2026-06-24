@@ -3,11 +3,13 @@
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import {
   defaultShouldDehydrateQuery,
+  isServer,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { persistQueryClient } from "@tanstack/react-query-persist-client";
+import { useEffect } from "react";
 import { AuthProvider } from "@/src/components/auth-provider";
 // Side-effect import: configures the axios baseURL and auth interceptor.
 import "@/src/lib/api-client";
@@ -33,7 +35,7 @@ function makeQueryClient() {
 let browserQueryClient: QueryClient | undefined;
 
 function getQueryClient() {
-  if (typeof window === "undefined") {
+  if (isServer) {
     // Server: always make a new query client per request.
     return makeQueryClient();
   }
@@ -43,51 +45,40 @@ function getQueryClient() {
   return browserQueryClient;
 }
 
-let browserPersister: ReturnType<typeof createSyncStoragePersister> | undefined;
-
-function getPersister() {
-  // Singleton: localStorage is only available in the browser.
-  if (!browserPersister) {
-    browserPersister = createSyncStoragePersister({
-      storage: window.localStorage,
-      key: "cms-turbo-query-cache",
-    });
-  }
-  return browserPersister;
-}
-
 export function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
-  // On the server there is no localStorage, so fall back to the plain
-  // provider. The browser render swaps in the persisting provider.
-  if (typeof window === "undefined") {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
-    );
-  }
+  // Persist the cache to localStorage. This runs only in the browser (effects
+  // never run during SSR), so the rendered tree stays identical on the server
+  // and the client — avoiding hydration mismatches.
+  useEffect(() => {
+    const persister = createSyncStoragePersister({
+      storage: window.localStorage,
+      key: "cms-turbo-query-cache",
+    });
+
+    const [unsubscribe] = persistQueryClient({
+      queryClient,
+      persister,
+      // Invalidate the persisted cache whenever the app version changes,
+      // so a deploy that alters the data shape never restores stale data.
+      buster: APP_VERSION,
+      // Only persist queries that actually have data, skipping pending /
+      // errored ones that aren't worth restoring after a reload.
+      dehydrateOptions: {
+        shouldDehydrateQuery: (query) =>
+          query.state.status === "success" &&
+          defaultShouldDehydrateQuery(query),
+      },
+    });
+
+    return unsubscribe;
+  }, [queryClient]);
 
   return (
-    <PersistQueryClientProvider
-      client={queryClient}
-      persistOptions={{
-        persister: getPersister(),
-        // Invalidate the persisted cache whenever the app version changes,
-        // so a deploy that alters the data shape never restores stale data.
-        buster: APP_VERSION,
-        // Only persist queries that actually have data, skipping pending /
-        // errored ones that aren't worth restoring after a reload.
-        dehydrateOptions: {
-          shouldDehydrateQuery: (query) =>
-            query.state.status === "success" &&
-            defaultShouldDehydrateQuery(query),
-        },
-      }}
-    >
+    <QueryClientProvider client={queryClient}>
       <AuthProvider>{children}</AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />
-    </PersistQueryClientProvider>
+    </QueryClientProvider>
   );
 }
