@@ -20,7 +20,6 @@ export { postAuthLocalRegister } from "./postAuthLocalRegister.ts";
 export { postAuthResetPassword } from "./postAuthResetPassword.ts";
 export { postAuthSendEmailConfirmation } from "./postAuthSendEmailConfirmation.ts";
 export { postUpload } from "./postUpload.ts";
-export { postUploadIdId } from "./postUploadIdId.ts";
 export { postUsers } from "./postUsers.ts";
 export { postUsersPermissionsRoles } from "./postUsersPermissionsRoles.ts";
 export { putUsersId } from "./putUsersId.ts";

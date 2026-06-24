@@ -117,12 +117,6 @@ export {
   postAuthSendEmailConfirmationMutationResponseSchema,
 } from "./postAuthSendEmailConfirmationSchema.ts";
 export {
-  postUploadId200Schema,
-  postUploadIdMutationRequestSchema,
-  postUploadIdMutationResponseSchema,
-  postUploadIdQueryParamsSchema,
-} from "./postUploadIdIdSchema.ts";
-export {
   postUpload200Schema,
   postUploadMutationRequestSchema,
   postUploadMutationResponseSchema,

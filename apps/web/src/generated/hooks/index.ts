@@ -32,7 +32,6 @@ export type { PostAuthLocalRegisterMutationKey } from "./usePostAuthLocalRegiste
 export type { PostAuthResetPasswordMutationKey } from "./usePostAuthResetPassword.ts";
 export type { PostAuthSendEmailConfirmationMutationKey } from "./usePostAuthSendEmailConfirmation.ts";
 export type { PostUploadMutationKey } from "./usePostUpload.ts";
-export type { PostUploadIdIdMutationKey } from "./usePostUploadIdId.ts";
 export type { PostUsersMutationKey } from "./usePostUsers.ts";
 export type { PostUsersPermissionsRolesMutationKey } from "./usePostUsersPermissionsRoles.ts";
 export type { PutUsersIdMutationKey } from "./usePutUsersId.ts";
@@ -139,9 +138,6 @@ export { usePostAuthSendEmailConfirmation } from "./usePostAuthSendEmailConfirma
 export { postUploadMutationKey } from "./usePostUpload.ts";
 export { postUploadMutationOptions } from "./usePostUpload.ts";
 export { usePostUpload } from "./usePostUpload.ts";
-export { postUploadIdIdMutationKey } from "./usePostUploadIdId.ts";
-export { postUploadIdIdMutationOptions } from "./usePostUploadIdId.ts";
-export { usePostUploadIdId } from "./usePostUploadIdId.ts";
 export { postUsersMutationKey } from "./usePostUsers.ts";
 export { postUsersMutationOptions } from "./usePostUsers.ts";
 export { usePostUsers } from "./usePostUsers.ts";
