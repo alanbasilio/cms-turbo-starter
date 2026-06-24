@@ -2,20 +2,20 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { AuthCard } from "@/src/components/auth/auth-card";
 import { TextField } from "@/src/components/auth/text-field";
 import { useRedirectIfAuthenticated } from "@/src/components/auth/use-redirect-if-authenticated";
 import { useAuth } from "@/src/components/auth-provider";
-import { usePostAuthLocal } from "@/src/generated/hooks/usePostAuthLocal";
-import { getApiErrorMessage } from "@/src/lib/api-client";
+import { loginAction } from "@/src/lib/auth-actions";
 import { type LoginValues, loginSchema } from "@/src/lib/auth-schemas";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { refreshSession } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
   useRedirectIfAuthenticated();
 
   const {
@@ -24,24 +24,17 @@ export default function LoginPage() {
     formState: { errors },
   } = useForm<LoginValues>({ resolver: zodResolver(loginSchema) });
 
-  const mutation = usePostAuthLocal();
-
   const onSubmit = handleSubmit((values) => {
     setError(null);
-    mutation.mutate(
-      { data: values },
-      {
-        onSuccess: (data) => {
-          if (data.jwt) {
-            login(data.jwt);
-            router.replace("/");
-          } else {
-            setError("Resposta inválida do servidor.");
-          }
-        },
-        onError: (err) => setError(getApiErrorMessage(err)),
-      },
-    );
+    startTransition(async () => {
+      const result = await loginAction(values);
+      if (result.ok) {
+        await refreshSession();
+        router.replace("/");
+      } else {
+        setError(result.error);
+      }
+    });
   });
 
   return (
@@ -50,7 +43,7 @@ export default function LoginPage() {
       description="Acesse sua conta para continuar."
       onSubmit={onSubmit}
       error={error}
-      isPending={mutation.isPending}
+      isPending={isPending}
       submitLabel="Entrar"
       pendingLabel="Entrando..."
       footerPrompt="Não tem conta?"

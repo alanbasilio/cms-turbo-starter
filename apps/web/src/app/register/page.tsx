@@ -2,20 +2,20 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { AuthCard } from "@/src/components/auth/auth-card";
 import { TextField } from "@/src/components/auth/text-field";
 import { useRedirectIfAuthenticated } from "@/src/components/auth/use-redirect-if-authenticated";
 import { useAuth } from "@/src/components/auth-provider";
-import { usePostAuthLocalRegister } from "@/src/generated/hooks/usePostAuthLocalRegister";
-import { getApiErrorMessage } from "@/src/lib/api-client";
+import { registerAction } from "@/src/lib/auth-actions";
 import { type RegisterValues, registerSchema } from "@/src/lib/auth-schemas";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { refreshSession } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
   useRedirectIfAuthenticated();
 
   const {
@@ -24,24 +24,17 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm<RegisterValues>({ resolver: zodResolver(registerSchema) });
 
-  const mutation = usePostAuthLocalRegister();
-
   const onSubmit = handleSubmit(({ username, email, password }) => {
     setError(null);
-    mutation.mutate(
-      { data: { username, email, password } },
-      {
-        onSuccess: (data) => {
-          if (data.jwt) {
-            login(data.jwt);
-            router.replace("/");
-          } else {
-            setError("Resposta inválida do servidor.");
-          }
-        },
-        onError: (err) => setError(getApiErrorMessage(err)),
-      },
-    );
+    startTransition(async () => {
+      const result = await registerAction({ username, email, password });
+      if (result.ok) {
+        await refreshSession();
+        router.replace("/");
+      } else {
+        setError(result.error);
+      }
+    });
   });
 
   return (
@@ -50,7 +43,7 @@ export default function RegisterPage() {
       description="Preencha os dados para começar."
       onSubmit={onSubmit}
       error={error}
-      isPending={mutation.isPending}
+      isPending={isPending}
       submitLabel="Criar conta"
       pendingLabel="Criando conta..."
       footerPrompt="Já tem conta?"
