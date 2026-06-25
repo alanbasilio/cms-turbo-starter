@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsPermissionsTreeSchema } from "./usersPermissionsPermissionsTreeSchema.ts";
-import { z } from "zod/v4";
 
 export const putUsersPermissionsRolesRolePathParamsSchema = z.object({
   role: z.string().describe("role Id"),
@@ -29,9 +29,7 @@ export const putUsersPermissionsRolesRoleMutationRequestSchema = z.object({
   name: z.optional(z.string()),
   description: z.optional(z.string()),
   type: z.optional(z.string()),
-  get permissions() {
-    return usersPermissionsPermissionsTreeSchema.optional();
-  },
+  permissions: z.optional(z.lazy(() => usersPermissionsPermissionsTreeSchema)),
 });
 
 export const putUsersPermissionsRolesRoleMutationResponseSchema = z.lazy(

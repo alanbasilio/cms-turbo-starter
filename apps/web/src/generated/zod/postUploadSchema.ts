@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { uploadFileSchema } from "./uploadFileSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description response

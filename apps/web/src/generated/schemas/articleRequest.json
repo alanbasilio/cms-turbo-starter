@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "required": ["data"],
+  "properties": {
+    "data": {
+      "required": ["title", "slug"],
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "slug": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "locale": { "type": "string" },
+        "localizations": {
+          "type": "array",
+          "items": {
+            "oneOf": [{ "type": "integer" }, { "type": "string" }],
+            "example": "string or id"
+          }
+        }
+      }
+    }
+  },
+  "x-readme-ref-name": "ArticleRequest"
+}

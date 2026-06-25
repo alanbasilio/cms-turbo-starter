@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import { z } from "zod/v4";
+import * as z from "zod";
 
 export const uploadFileSchema = z.object({
   id: z.optional(z.number()),
@@ -21,6 +21,6 @@ export const uploadFileSchema = z.object({
   previewUrl: z.optional(z.string()),
   provider: z.optional(z.string()),
   provider_metadata: z.optional(z.object({})),
-  createdAt: z.optional(z.iso.datetime()),
-  updatedAt: z.optional(z.iso.datetime()),
+  createdAt: z.optional(z.string().datetime()),
+  updatedAt: z.optional(z.string().datetime()),
 });

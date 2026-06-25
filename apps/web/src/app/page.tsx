@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useAuth } from "@/src/components/auth-provider";
 import { RequireAuth } from "@/src/components/require-auth";
 import { Button } from "@/src/components/ui/button";
@@ -30,6 +31,9 @@ function HomeContent() {
             <dt className="text-muted-foreground">E-mail</dt>
             <dd>{user?.email ?? "—"}</dd>
           </dl>
+          <Button asChild variant="default">
+            <Link href="/articles">Ver artigos</Link>
+          </Button>
           <Button variant="outline" onClick={logout}>
             Sair
           </Button>

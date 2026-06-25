@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
-import { z } from "zod/v4";
 
 export const deleteUsersPermissionsRolesRolePathParamsSchema = z.object({
   role: z.string().describe("role Id"),

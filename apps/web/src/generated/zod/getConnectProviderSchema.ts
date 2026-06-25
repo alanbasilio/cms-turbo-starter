@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
-import { z } from "zod/v4";
 
 export const getConnectProviderPathParamsSchema = z.object({
   provider: z.string().regex(/.*/).describe("Provider name"),

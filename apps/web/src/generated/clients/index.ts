@@ -1,6 +1,9 @@
+export { deleteArticlesid } from "./deleteArticlesid.ts";
 export { deleteUploadFilesId } from "./deleteUploadFilesId.ts";
 export { deleteUsersId } from "./deleteUsersId.ts";
 export { deleteUsersPermissionsRolesRole } from "./deleteUsersPermissionsRolesRole.ts";
+export { getArticles } from "./getArticles.ts";
+export { getArticlesid } from "./getArticlesid.ts";
 export { getAuthEmailConfirmation } from "./getAuthEmailConfirmation.ts";
 export { getAuthProviderCallback } from "./getAuthProviderCallback.ts";
 export { getConnectProvider } from "./getConnectProvider.ts";
@@ -13,6 +16,7 @@ export { getUsersMe } from "./getUsersMe.ts";
 export { getUsersPermissionsPermissions } from "./getUsersPermissionsPermissions.ts";
 export { getUsersPermissionsRoles } from "./getUsersPermissionsRoles.ts";
 export { getUsersPermissionsRolesId } from "./getUsersPermissionsRolesId.ts";
+export { postArticles } from "./postArticles.ts";
 export { postAuthChangePassword } from "./postAuthChangePassword.ts";
 export { postAuthForgotPassword } from "./postAuthForgotPassword.ts";
 export { postAuthLocal } from "./postAuthLocal.ts";
@@ -22,5 +26,6 @@ export { postAuthSendEmailConfirmation } from "./postAuthSendEmailConfirmation.t
 export { postUpload } from "./postUpload.ts";
 export { postUsers } from "./postUsers.ts";
 export { postUsersPermissionsRoles } from "./postUsersPermissionsRoles.ts";
+export { putArticlesid } from "./putArticlesid.ts";
 export { putUsersId } from "./putUsersId.ts";
 export { putUsersPermissionsRolesRole } from "./putUsersPermissionsRolesRole.ts";

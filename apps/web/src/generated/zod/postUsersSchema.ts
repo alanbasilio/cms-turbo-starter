@@ -3,10 +3,10 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsRoleSchema } from "./usersPermissionsRoleSchema.ts";
 import { usersPermissionsUserSchema } from "./usersPermissionsUserSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns created user info
@@ -15,9 +15,7 @@ export const postUsers201Schema = z
   .lazy(() => usersPermissionsUserSchema)
   .and(
     z.object({
-      get role() {
-        return usersPermissionsRoleSchema.optional();
-      },
+      role: z.optional(z.lazy(() => usersPermissionsRoleSchema)),
     }),
   );
 
