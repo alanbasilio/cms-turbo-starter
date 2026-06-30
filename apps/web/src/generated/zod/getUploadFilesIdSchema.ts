@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { uploadFileSchema } from "./uploadFileSchema.ts";
-import { z } from "zod/v4";
 
 export const getUploadFilesIdPathParamsSchema = z.object({
   id: z.string(),
@@ -16,5 +16,5 @@ export const getUploadFilesIdPathParamsSchema = z.object({
 export const getUploadFilesId200Schema = z.lazy(() => uploadFileSchema);
 
 export const getUploadFilesIdQueryResponseSchema = z.lazy(
-  () => getUploadFilesId200Schema
+  () => getUploadFilesId200Schema,
 );

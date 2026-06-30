@@ -25,7 +25,7 @@ function getGetUsersIdUrl(id: GetUsersIdPathParams["id"]) {
  */
 export async function getUsersId(
   id: GetUsersIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

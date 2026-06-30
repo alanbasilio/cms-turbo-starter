@@ -27,7 +27,7 @@ export async function postUsersPermissionsRoles(
   data: PostUsersPermissionsRolesMutationRequest,
   config: Partial<RequestConfig<PostUsersPermissionsRolesMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

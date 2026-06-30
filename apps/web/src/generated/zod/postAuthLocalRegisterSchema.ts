@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsUserRegistrationSchema } from "./usersPermissionsUserRegistrationSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Successful registration
  */
 export const postAuthLocalRegister200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -26,5 +26,5 @@ export const postAuthLocalRegisterMutationRequestSchema = z.object({
 });
 
 export const postAuthLocalRegisterMutationResponseSchema = z.lazy(
-  () => postAuthLocalRegister200Schema
+  () => postAuthLocalRegister200Schema,
 );

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # npm ci won't resolve optionalDependencies for platforms missing from
+      # package-lock.json (npm/cli#4828) — our lockfile only has darwin-arm64
+      # entries for native binaries (Biome, Tailwind's oxide engine, etc.),
+      # since it was generated on a Mac. Install the Linux ones explicitly
+      # (not saved to the lockfile) so lint/build can find them here.
+      - name: Install native binaries missing from the lockfile
+        run: npm install --no-save @biomejs/cli-linux-x64@2.2.0 @tailwindcss/oxide-linux-x64-gnu@4.3.1
+
+      - name: Lint, typecheck, and test
+        run: npx turbo run lint typecheck test
+
+      # Build the web app (kubb generate runs from the committed OpenAPI doc).
+      # The Strapi build is env-heavy and adds little here, so it's left out;
+      # the CMS is still covered by typecheck above.
+      - name: Build web
+        run: npx turbo run build --filter=web

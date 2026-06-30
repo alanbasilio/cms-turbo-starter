@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsPermissionsTreeSchema } from "./usersPermissionsPermissionsTreeSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns ok if the role was create
@@ -23,11 +23,9 @@ export const postUsersPermissionsRolesMutationRequestSchema = z.object({
   name: z.optional(z.string()),
   description: z.optional(z.string()),
   type: z.optional(z.string()),
-  get permissions() {
-    return usersPermissionsPermissionsTreeSchema.optional();
-  },
+  permissions: z.optional(z.lazy(() => usersPermissionsPermissionsTreeSchema)),
 });
 
 export const postUsersPermissionsRolesMutationResponseSchema = z.lazy(
-  () => postUsersPermissionsRoles200Schema
+  () => postUsersPermissionsRoles200Schema,
 );

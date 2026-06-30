@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import { z } from "zod/v4";
+import * as z from "zod";
 
 export const usersPermissionsUserSchema = z.object({
   id: z.optional(z.number()),
@@ -12,6 +12,6 @@ export const usersPermissionsUserSchema = z.object({
   provider: z.optional(z.string()),
   confirmed: z.optional(z.boolean()),
   blocked: z.optional(z.boolean()),
-  createdAt: z.optional(z.iso.datetime()),
-  updatedAt: z.optional(z.iso.datetime()),
+  createdAt: z.optional(z.string().datetime()),
+  updatedAt: z.optional(z.string().datetime()),
 });

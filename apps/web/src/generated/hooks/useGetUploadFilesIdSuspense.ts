@@ -22,7 +22,7 @@ import { getUploadFilesId } from "../clients/getUploadFilesId.ts";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
 export const getUploadFilesIdSuspenseQueryKey = (
-  id: GetUploadFilesIdPathParams["id"] | undefined
+  id: GetUploadFilesIdPathParams["id"] | undefined,
 ) => [{ url: "/upload/files/:id", params: { id: id } }] as const;
 
 export type GetUploadFilesIdSuspenseQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetUploadFilesIdSuspenseQueryKey = ReturnType<
 
 export function getUploadFilesIdSuspenseQueryOptions(
   id: GetUploadFilesIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUploadFilesIdSuspenseQueryKey(id);
   return queryOptions<
@@ -55,7 +55,7 @@ export function getUploadFilesIdSuspenseQueryOptions(
  */
 export function useGetUploadFilesIdSuspense<
   TData = GetUploadFilesIdQueryResponse,
-  TQueryKey extends QueryKey = GetUploadFilesIdSuspenseQueryKey
+  TQueryKey extends QueryKey = GetUploadFilesIdSuspenseQueryKey,
 >(
   id: GetUploadFilesIdPathParams["id"],
   options: {
@@ -68,7 +68,7 @@ export function useGetUploadFilesIdSuspense<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -81,7 +81,7 @@ export function useGetUploadFilesIdSuspense<
       ...resolvedOptions,
       queryKey,
     } as unknown as UseSuspenseQueryOptions,
-    queryClient
+    queryClient,
   ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

@@ -3,10 +3,10 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsRoleSchema } from "./usersPermissionsRoleSchema.ts";
 import { usersPermissionsUserSchema } from "./usersPermissionsUserSchema.ts";
-import { z } from "zod/v4";
 
 export const putUsersIdPathParamsSchema = z.object({
   id: z.string().describe("user Id"),
@@ -19,10 +19,8 @@ export const putUsersId200Schema = z
   .lazy(() => usersPermissionsUserSchema)
   .and(
     z.object({
-      get role() {
-        return usersPermissionsRoleSchema.optional();
-      },
-    })
+      role: z.optional(z.lazy(() => usersPermissionsRoleSchema)),
+    }),
   );
 
 /**
@@ -37,5 +35,5 @@ export const putUsersIdMutationRequestSchema = z.object({
 });
 
 export const putUsersIdMutationResponseSchema = z.lazy(
-  () => putUsersId200Schema
+  () => putUsersId200Schema,
 );

@@ -21,7 +21,7 @@ function getGetUsersPermissionsRolesUrl() {
  * {@link /users-permissions/roles}
  */
 export async function getUsersPermissionsRoles(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

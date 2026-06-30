@@ -22,7 +22,7 @@ import { getUsersPermissionsRolesId } from "../clients/getUsersPermissionsRolesI
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
 export const getUsersPermissionsRolesIdSuspenseQueryKey = (
-  id: GetUsersPermissionsRolesIdPathParams["id"] | undefined
+  id: GetUsersPermissionsRolesIdPathParams["id"] | undefined,
 ) => [{ url: "/users-permissions/roles/:id", params: { id: id } }] as const;
 
 export type GetUsersPermissionsRolesIdSuspenseQueryKey = ReturnType<
@@ -31,7 +31,7 @@ export type GetUsersPermissionsRolesIdSuspenseQueryKey = ReturnType<
 
 export function getUsersPermissionsRolesIdSuspenseQueryOptions(
   id: GetUsersPermissionsRolesIdPathParams["id"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersPermissionsRolesIdSuspenseQueryKey(id);
   return queryOptions<
@@ -56,7 +56,7 @@ export function getUsersPermissionsRolesIdSuspenseQueryOptions(
  */
 export function useGetUsersPermissionsRolesIdSuspense<
   TData = GetUsersPermissionsRolesIdQueryResponse,
-  TQueryKey extends QueryKey = GetUsersPermissionsRolesIdSuspenseQueryKey
+  TQueryKey extends QueryKey = GetUsersPermissionsRolesIdSuspenseQueryKey,
 >(
   id: GetUsersPermissionsRolesIdPathParams["id"],
   options: {
@@ -69,7 +69,7 @@ export function useGetUsersPermissionsRolesIdSuspense<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -82,7 +82,7 @@ export function useGetUsersPermissionsRolesIdSuspense<
       ...resolvedOptions,
       queryKey,
     } as unknown as UseSuspenseQueryOptions,
-    queryClient
+    queryClient,
   ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

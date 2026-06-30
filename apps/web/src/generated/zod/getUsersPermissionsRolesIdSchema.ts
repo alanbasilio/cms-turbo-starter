@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsRoleSchema } from "./usersPermissionsRoleSchema.ts";
-import { z } from "zod/v4";
 
 export const getUsersPermissionsRolesIdPathParamsSchema = z.object({
   id: z.string().describe("role Id"),
@@ -15,9 +15,7 @@ export const getUsersPermissionsRolesIdPathParamsSchema = z.object({
  * @description Returns the role
  */
 export const getUsersPermissionsRolesId200Schema = z.object({
-  get role() {
-    return usersPermissionsRoleSchema.optional();
-  },
+  role: z.optional(z.lazy(() => usersPermissionsRoleSchema)),
 });
 
 /**
@@ -26,5 +24,5 @@ export const getUsersPermissionsRolesId200Schema = z.object({
 export const getUsersPermissionsRolesIdErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersPermissionsRolesIdQueryResponseSchema = z.lazy(
-  () => getUsersPermissionsRolesId200Schema
+  () => getUsersPermissionsRolesId200Schema,
 );

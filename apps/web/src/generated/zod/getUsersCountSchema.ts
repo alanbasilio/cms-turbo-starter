@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns a number
@@ -17,5 +17,5 @@ export const getUsersCount200Schema = z.number();
 export const getUsersCountErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersCountQueryResponseSchema = z.lazy(
-  () => getUsersCount200Schema
+  () => getUsersCount200Schema,
 );

@@ -28,11 +28,11 @@ export type PostAuthSendEmailConfirmationMutationKey = ReturnType<
 >;
 
 export function postAuthSendEmailConfirmationMutationOptions<
-  TContext = unknown
+  TContext = unknown,
 >(
   config: Partial<
     RequestConfig<PostAuthSendEmailConfirmationMutationRequest>
-  > & { client?: Client } = {}
+  > & { client?: Client } = {},
 ) {
   const mutationKey = postAuthSendEmailConfirmationMutationKey();
   return mutationOptions<
@@ -63,7 +63,7 @@ export function usePostAuthSendEmailConfirmation<TContext>(
     client?: Partial<
       RequestConfig<PostAuthSendEmailConfirmationMutationRequest>
     > & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -71,7 +71,7 @@ export function usePostAuthSendEmailConfirmation<TContext>(
     mutationOptions.mutationKey ?? postAuthSendEmailConfirmationMutationKey();
 
   const baseOptions = postAuthSendEmailConfirmationMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PostAuthSendEmailConfirmationMutationResponse,
     ResponseErrorConfig<Error>,
@@ -90,7 +90,7 @@ export function usePostAuthSendEmailConfirmation<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostAuthSendEmailConfirmationMutationResponse,
     ResponseErrorConfig<Error>,

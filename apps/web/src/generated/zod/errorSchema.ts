@@ -3,12 +3,12 @@
  * Do not edit manually.
  */
 
-import { z } from "zod/v4";
+import * as z from "zod";
 
 export const errorSchema = z.object({
   data: z.union([z.array(z.object({})), z.object({})]).nullish(),
   error: z.object({
-    status: z.optional(z.int()),
+    status: z.optional(z.number().int()),
     name: z.optional(z.string()),
     message: z.optional(z.string()),
     details: z.optional(z.object({})),

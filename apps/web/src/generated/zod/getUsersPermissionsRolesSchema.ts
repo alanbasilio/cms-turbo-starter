@@ -3,25 +3,25 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsRoleSchema } from "./usersPermissionsRoleSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns list of roles
  */
 export const getUsersPermissionsRoles200Schema = z.object({
-  get roles() {
-    return z
-      .array(
-        usersPermissionsRoleSchema.and(
+  roles: z.optional(
+    z.array(
+      z
+        .lazy(() => usersPermissionsRoleSchema)
+        .and(
           z.object({
             nb_users: z.optional(z.number()),
-          })
-        )
-      )
-      .optional();
-  },
+          }),
+        ),
+    ),
+  ),
 });
 
 /**
@@ -30,5 +30,5 @@ export const getUsersPermissionsRoles200Schema = z.object({
 export const getUsersPermissionsRolesErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersPermissionsRolesQueryResponseSchema = z.lazy(
-  () => getUsersPermissionsRoles200Schema
+  () => getUsersPermissionsRoles200Schema,
 );

@@ -10,7 +10,7 @@ export const postAuthForgotPassword200OkEnum = {
 } as const;
 
 export type PostAuthForgotPassword200OkEnumKey =
-  typeof postAuthForgotPassword200OkEnum[keyof typeof postAuthForgotPassword200OkEnum];
+  (typeof postAuthForgotPassword200OkEnum)[keyof typeof postAuthForgotPassword200OkEnum];
 
 /**
  * @description Returns ok

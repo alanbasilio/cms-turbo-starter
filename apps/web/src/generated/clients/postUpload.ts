@@ -28,7 +28,7 @@ export async function postUpload(
   data: PostUploadMutationRequest,
   config: Partial<RequestConfig<PostUploadMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

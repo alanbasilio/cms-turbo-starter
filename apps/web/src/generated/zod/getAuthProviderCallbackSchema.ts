@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsUserRegistrationSchema } from "./usersPermissionsUserRegistrationSchema.ts";
-import { z } from "zod/v4";
 
 export const getAuthProviderCallbackPathParamsSchema = z.object({
   provider: z.string().describe("Provider name"),
@@ -15,7 +15,7 @@ export const getAuthProviderCallbackPathParamsSchema = z.object({
  * @description Returns a jwt token and user info
  */
 export const getAuthProviderCallback200Schema = z.lazy(
-  () => usersPermissionsUserRegistrationSchema
+  () => usersPermissionsUserRegistrationSchema,
 );
 
 /**
@@ -24,5 +24,5 @@ export const getAuthProviderCallback200Schema = z.lazy(
 export const getAuthProviderCallbackErrorSchema = z.lazy(() => errorSchema);
 
 export const getAuthProviderCallbackQueryResponseSchema = z.lazy(
-  () => getAuthProviderCallback200Schema
+  () => getAuthProviderCallback200Schema,
 );

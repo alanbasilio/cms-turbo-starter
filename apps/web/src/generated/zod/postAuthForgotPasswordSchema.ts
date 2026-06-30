@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns ok
@@ -23,5 +23,5 @@ export const postAuthForgotPasswordMutationRequestSchema = z.object({
 });
 
 export const postAuthForgotPasswordMutationResponseSchema = z.lazy(
-  () => postAuthForgotPassword200Schema
+  () => postAuthForgotPassword200Schema,
 );

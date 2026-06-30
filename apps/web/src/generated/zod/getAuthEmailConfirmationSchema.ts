@@ -3,13 +3,13 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
-import { z } from "zod/v4";
 
 export const getAuthEmailConfirmationQueryParamsSchema = z
   .object({
     confirmation: z.optional(
-      z.string().describe("confirmation token received by email")
+      z.string().describe("confirmation token received by email"),
     ),
   })
   .optional();

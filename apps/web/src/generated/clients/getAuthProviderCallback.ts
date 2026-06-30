@@ -15,7 +15,7 @@ import type {
 } from "@kubb/plugin-client/clients/axios";
 
 function getGetAuthProviderCallbackUrl(
-  provider: GetAuthProviderCallbackPathParams["provider"]
+  provider: GetAuthProviderCallbackPathParams["provider"],
 ) {
   const res = { method: "GET", url: `/auth/${provider}/callback` as const };
   return res;
@@ -27,7 +27,7 @@ function getGetAuthProviderCallbackUrl(
  */
 export async function getAuthProviderCallback(
   provider: GetAuthProviderCallbackPathParams["provider"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

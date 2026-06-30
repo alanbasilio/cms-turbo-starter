@@ -27,7 +27,7 @@ export async function postUsers(
   data: PostUsersMutationRequest,
   config: Partial<RequestConfig<PostUsersMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

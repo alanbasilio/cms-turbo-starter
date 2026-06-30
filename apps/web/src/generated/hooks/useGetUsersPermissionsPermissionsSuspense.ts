@@ -26,7 +26,7 @@ export type GetUsersPermissionsPermissionsSuspenseQueryKey = ReturnType<
 >;
 
 export function getUsersPermissionsPermissionsSuspenseQueryOptions(
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersPermissionsPermissionsSuspenseQueryKey();
   return queryOptions<
@@ -51,7 +51,7 @@ export function getUsersPermissionsPermissionsSuspenseQueryOptions(
  */
 export function useGetUsersPermissionsPermissionsSuspense<
   TData = GetUsersPermissionsQueryResponse,
-  TQueryKey extends QueryKey = GetUsersPermissionsPermissionsSuspenseQueryKey
+  TQueryKey extends QueryKey = GetUsersPermissionsPermissionsSuspenseQueryKey,
 >(
   options: {
     query?: Partial<
@@ -63,7 +63,7 @@ export function useGetUsersPermissionsPermissionsSuspense<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -77,7 +77,7 @@ export function useGetUsersPermissionsPermissionsSuspense<
       ...resolvedOptions,
       queryKey,
     } as unknown as UseSuspenseQueryOptions,
-    queryClient
+    queryClient,
   ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

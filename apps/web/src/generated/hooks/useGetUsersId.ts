@@ -22,14 +22,14 @@ import { getUsersId } from "../clients/getUsersId.ts";
 import { queryOptions, useQuery } from "@tanstack/react-query";
 
 export const getUsersIdQueryKey = (
-  id: GetUsersIdPathParams["id"] | undefined
+  id: GetUsersIdPathParams["id"] | undefined,
 ) => [{ url: "/users/:id", params: { id: id } }] as const;
 
 export type GetUsersIdQueryKey = ReturnType<typeof getUsersIdQueryKey>;
 
 export function getUsersIdQueryOptions(
   id: GetUsersIdPathParams["id"] | undefined,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getUsersIdQueryKey(id);
   return queryOptions<
@@ -53,7 +53,7 @@ export function getUsersIdQueryOptions(
 export function useGetUsersId<
   TData = GetUsersIdQueryResponse,
   TQueryData = GetUsersIdQueryResponse,
-  TQueryKey extends QueryKey = GetUsersIdQueryKey
+  TQueryKey extends QueryKey = GetUsersIdQueryKey,
 >(
   id: GetUsersIdPathParams["id"] | undefined,
   options: {
@@ -67,7 +67,7 @@ export function useGetUsersId<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -79,7 +79,7 @@ export function useGetUsersId<
       ...resolvedOptions,
       queryKey,
     } as unknown as QueryObserverOptions,
-    queryClient
+    queryClient,
   ) as UseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

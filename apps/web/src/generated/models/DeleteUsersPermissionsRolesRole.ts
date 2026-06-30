@@ -18,7 +18,7 @@ export const deleteUsersPermissionsRolesRole200OkEnum = {
 } as const;
 
 export type DeleteUsersPermissionsRolesRole200OkEnumKey =
-  typeof deleteUsersPermissionsRolesRole200OkEnum[keyof typeof deleteUsersPermissionsRolesRole200OkEnum];
+  (typeof deleteUsersPermissionsRolesRole200OkEnum)[keyof typeof deleteUsersPermissionsRolesRole200OkEnum];
 
 /**
  * @description Returns ok if the role was delete

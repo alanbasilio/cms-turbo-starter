@@ -3,17 +3,15 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsPermissionsTreeSchema } from "./usersPermissionsPermissionsTreeSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns the permissions tree
  */
 export const getUsersPermissions200Schema = z.object({
-  get permissions() {
-    return usersPermissionsPermissionsTreeSchema.optional();
-  },
+  permissions: z.optional(z.lazy(() => usersPermissionsPermissionsTreeSchema)),
 });
 
 /**
@@ -22,5 +20,5 @@ export const getUsersPermissions200Schema = z.object({
 export const getUsersPermissionsErrorSchema = z.lazy(() => errorSchema);
 
 export const getUsersPermissionsQueryResponseSchema = z.lazy(
-  () => getUsersPermissions200Schema
+  () => getUsersPermissions200Schema,
 );

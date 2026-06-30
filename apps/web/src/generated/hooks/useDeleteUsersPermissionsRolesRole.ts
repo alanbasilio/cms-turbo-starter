@@ -28,7 +28,7 @@ export type DeleteUsersPermissionsRolesRoleMutationKey = ReturnType<
 >;
 
 export function deleteUsersPermissionsRolesRoleMutationOptions<
-  TContext = unknown
+  TContext = unknown,
 >(config: Partial<RequestConfig> & { client?: Client } = {}) {
   const mutationKey = deleteUsersPermissionsRolesRoleMutationKey();
   return mutationOptions<
@@ -57,7 +57,7 @@ export function useDeleteUsersPermissionsRolesRole<TContext>(
       TContext
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -65,7 +65,7 @@ export function useDeleteUsersPermissionsRolesRole<TContext>(
     mutationOptions.mutationKey ?? deleteUsersPermissionsRolesRoleMutationKey();
 
   const baseOptions = deleteUsersPermissionsRolesRoleMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     DeleteUsersPermissionsRolesRoleMutationResponse,
     ResponseErrorConfig<Error>,
@@ -84,7 +84,7 @@ export function useDeleteUsersPermissionsRolesRole<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     DeleteUsersPermissionsRolesRoleMutationResponse,
     ResponseErrorConfig<Error>,

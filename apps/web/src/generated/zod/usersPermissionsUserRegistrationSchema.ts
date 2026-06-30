@@ -3,12 +3,10 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { usersPermissionsUserSchema } from "./usersPermissionsUserSchema.ts";
-import { z } from "zod/v4";
 
 export const usersPermissionsUserRegistrationSchema = z.object({
   jwt: z.optional(z.string()),
-  get user() {
-    return usersPermissionsUserSchema.optional();
-  },
+  user: z.optional(z.lazy(() => usersPermissionsUserSchema)),
 });

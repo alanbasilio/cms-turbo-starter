@@ -3,9 +3,9 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsUserSchema } from "./usersPermissionsUserSchema.ts";
-import { z } from "zod/v4";
 
 export const getUsersIdPathParamsSchema = z.object({
   id: z.string().describe("user Id"),

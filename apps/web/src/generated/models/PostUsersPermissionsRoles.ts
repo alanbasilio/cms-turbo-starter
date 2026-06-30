@@ -11,7 +11,7 @@ export const postUsersPermissionsRoles200OkEnum = {
 } as const;
 
 export type PostUsersPermissionsRoles200OkEnumKey =
-  typeof postUsersPermissionsRoles200OkEnum[keyof typeof postUsersPermissionsRoles200OkEnum];
+  (typeof postUsersPermissionsRoles200OkEnum)[keyof typeof postUsersPermissionsRoles200OkEnum];
 
 /**
  * @description Returns ok if the role was create

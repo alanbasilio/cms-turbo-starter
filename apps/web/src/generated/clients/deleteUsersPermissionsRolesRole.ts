@@ -15,7 +15,7 @@ import type {
 } from "@kubb/plugin-client/clients/axios";
 
 function getDeleteUsersPermissionsRolesRoleUrl(
-  role: DeleteUsersPermissionsRolesRolePathParams["role"]
+  role: DeleteUsersPermissionsRolesRolePathParams["role"],
 ) {
   const res = {
     method: "DELETE",
@@ -30,7 +30,7 @@ function getDeleteUsersPermissionsRolesRoleUrl(
  */
 export async function deleteUsersPermissionsRolesRole(
   role: DeleteUsersPermissionsRolesRolePathParams["role"],
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

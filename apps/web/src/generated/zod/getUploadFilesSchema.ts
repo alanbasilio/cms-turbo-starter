@@ -3,8 +3,8 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { uploadFileSchema } from "./uploadFileSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Get a list of files
@@ -12,5 +12,5 @@ import { z } from "zod/v4";
 export const getUploadFiles200Schema = z.array(z.lazy(() => uploadFileSchema));
 
 export const getUploadFilesQueryResponseSchema = z.lazy(
-  () => getUploadFiles200Schema
+  () => getUploadFiles200Schema,
 );

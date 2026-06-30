@@ -22,7 +22,7 @@ import { getAuthEmailConfirmation } from "../clients/getAuthEmailConfirmation.ts
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 
 export const getAuthEmailConfirmationSuspenseQueryKey = (
-  params?: GetAuthEmailConfirmationQueryParams
+  params?: GetAuthEmailConfirmationQueryParams,
 ) =>
   [{ url: "/auth/email-confirmation" }, ...(params ? [params] : [])] as const;
 
@@ -32,7 +32,7 @@ export type GetAuthEmailConfirmationSuspenseQueryKey = ReturnType<
 
 export function getAuthEmailConfirmationSuspenseQueryOptions(
   params?: GetAuthEmailConfirmationQueryParams,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const queryKey = getAuthEmailConfirmationSuspenseQueryKey(params);
   return queryOptions<
@@ -57,7 +57,7 @@ export function getAuthEmailConfirmationSuspenseQueryOptions(
  */
 export function useGetAuthEmailConfirmationSuspense<
   TData = GetAuthEmailConfirmationQueryResponse,
-  TQueryKey extends QueryKey = GetAuthEmailConfirmationSuspenseQueryKey
+  TQueryKey extends QueryKey = GetAuthEmailConfirmationSuspenseQueryKey,
 >(
   params?: GetAuthEmailConfirmationQueryParams,
   options: {
@@ -70,7 +70,7 @@ export function useGetAuthEmailConfirmationSuspense<
       >
     > & { client?: QueryClient };
     client?: Partial<RequestConfig> & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { query: queryConfig = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...resolvedOptions } = queryConfig;
@@ -84,7 +84,7 @@ export function useGetAuthEmailConfirmationSuspense<
       ...resolvedOptions,
       queryKey,
     } as unknown as UseSuspenseQueryOptions,
-    queryClient
+    queryClient,
   ) as UseSuspenseQueryResult<TData, ResponseErrorConfig<Error>> & {
     queryKey: TQueryKey;
   };

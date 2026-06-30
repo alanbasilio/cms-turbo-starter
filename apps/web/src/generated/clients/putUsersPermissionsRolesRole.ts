@@ -16,7 +16,7 @@ import type {
 } from "@kubb/plugin-client/clients/axios";
 
 function getPutUsersPermissionsRolesRoleUrl(
-  role: PutUsersPermissionsRolesRolePathParams["role"]
+  role: PutUsersPermissionsRolesRolePathParams["role"],
 ) {
   const res = {
     method: "PUT",
@@ -34,7 +34,7 @@ export async function putUsersPermissionsRolesRole(
   data: PutUsersPermissionsRolesRoleMutationRequest,
   config: Partial<
     RequestConfig<PutUsersPermissionsRolesRoleMutationRequest>
-  > & { client?: Client } = {}
+  > & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

@@ -3,15 +3,15 @@
  * Do not edit manually.
  */
 
+import * as z from "zod";
 import { errorSchema } from "./errorSchema.ts";
 import { usersPermissionsUserSchema } from "./usersPermissionsUserSchema.ts";
-import { z } from "zod/v4";
 
 /**
  * @description Returns an array of users
  */
 export const getUsers200Schema = z.array(
-  z.lazy(() => usersPermissionsUserSchema)
+  z.lazy(() => usersPermissionsUserSchema),
 );
 
 /**

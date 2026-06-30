@@ -25,7 +25,7 @@ function getGetAuthEmailConfirmationUrl() {
  */
 export async function getAuthEmailConfirmation(
   params?: GetAuthEmailConfirmationQueryParams,
-  config: Partial<RequestConfig> & { client?: Client } = {}
+  config: Partial<RequestConfig> & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

@@ -17,12 +17,19 @@
       "cache": false
     },
     "dev": {
+      "dependsOn": ["generate"],
       "cache": false,
       "persistent": true
     },
     "start": {
       "cache": false,
       "persistent": true
+    },
+    "typecheck": {
+      "dependsOn": ["generate"]
+    },
+    "test": {
+      "dependsOn": ["generate"]
     },
     "lint": {},
     "format": {

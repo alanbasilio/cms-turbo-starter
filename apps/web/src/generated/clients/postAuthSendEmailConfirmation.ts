@@ -27,7 +27,7 @@ export async function postAuthSendEmailConfirmation(
   data: PostAuthSendEmailConfirmationMutationRequest,
   config: Partial<
     RequestConfig<PostAuthSendEmailConfirmationMutationRequest>
-  > & { client?: Client } = {}
+  > & { client?: Client } = {},
 ) {
   const { client: request = fetch, ...requestConfig } = config;
 

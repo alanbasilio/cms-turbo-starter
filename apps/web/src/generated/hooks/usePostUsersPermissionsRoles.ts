@@ -30,7 +30,7 @@ export type PostUsersPermissionsRolesMutationKey = ReturnType<
 export function postUsersPermissionsRolesMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostUsersPermissionsRolesMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postUsersPermissionsRolesMutationKey();
   return mutationOptions<
@@ -61,7 +61,7 @@ export function usePostUsersPermissionsRoles<TContext>(
     client?: Partial<
       RequestConfig<PostUsersPermissionsRolesMutationRequest>
     > & { client?: Client };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -69,7 +69,7 @@ export function usePostUsersPermissionsRoles<TContext>(
     mutationOptions.mutationKey ?? postUsersPermissionsRolesMutationKey();
 
   const baseOptions = postUsersPermissionsRolesMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PostUsersPermissionsRolesMutationResponse,
     ResponseErrorConfig<Error>,
@@ -88,7 +88,7 @@ export function usePostUsersPermissionsRoles<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostUsersPermissionsRolesMutationResponse,
     ResponseErrorConfig<Error>,

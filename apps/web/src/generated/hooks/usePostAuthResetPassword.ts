@@ -30,7 +30,7 @@ export type PostAuthResetPasswordMutationKey = ReturnType<
 export function postAuthResetPasswordMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostAuthResetPasswordMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postAuthResetPasswordMutationKey();
   return mutationOptions<
@@ -61,7 +61,7 @@ export function usePostAuthResetPassword<TContext>(
     client?: Partial<RequestConfig<PostAuthResetPasswordMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -69,7 +69,7 @@ export function usePostAuthResetPassword<TContext>(
     mutationOptions.mutationKey ?? postAuthResetPasswordMutationKey();
 
   const baseOptions = postAuthResetPasswordMutationOptions(
-    config
+    config,
   ) as UseMutationOptions<
     PostAuthResetPasswordMutationResponse,
     ResponseErrorConfig<Error>,
@@ -88,7 +88,7 @@ export function usePostAuthResetPassword<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostAuthResetPasswordMutationResponse,
     ResponseErrorConfig<Error>,

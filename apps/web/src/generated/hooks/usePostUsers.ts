@@ -27,7 +27,7 @@ export type PostUsersMutationKey = ReturnType<typeof postUsersMutationKey>;
 export function postUsersMutationOptions<TContext = unknown>(
   config: Partial<RequestConfig<PostUsersMutationRequest>> & {
     client?: Client;
-  } = {}
+  } = {},
 ) {
   const mutationKey = postUsersMutationKey();
   return mutationOptions<
@@ -58,7 +58,7 @@ export function usePostUsers<TContext>(
     client?: Partial<RequestConfig<PostUsersMutationRequest>> & {
       client?: Client;
     };
-  } = {}
+  } = {},
 ) {
   const { mutation = {}, client: config = {} } = options ?? {};
   const { client: queryClient, ...mutationOptions } = mutation;
@@ -82,7 +82,7 @@ export function usePostUsers<TContext>(
       mutationKey,
       ...mutationOptions,
     },
-    queryClient
+    queryClient,
   ) as UseMutationResult<
     PostUsersMutationResponse,
     ResponseErrorConfig<Error>,

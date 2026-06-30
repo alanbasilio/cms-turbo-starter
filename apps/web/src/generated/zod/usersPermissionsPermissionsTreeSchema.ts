@@ -3,7 +3,7 @@
  * Do not edit manually.
  */
 
-import { z } from "zod/v4";
+import * as z from "zod";
 
 export const usersPermissionsPermissionsTreeSchema = z.object({}).catchall(
   z
@@ -18,11 +18,11 @@ export const usersPermissionsPermissionsTreeSchema = z.object({}).catchall(
                   enabled: z.optional(z.boolean()),
                   policy: z.optional(z.string()),
                 })
-                .describe("every action of every controller")
-            )
+                .describe("every action of every controller"),
+            ),
           )
-          .describe("every controller of the api")
+          .describe("every controller of the api"),
       ),
     })
-    .describe("every api")
+    .describe("every api"),
 );
