@@ -20,12 +20,16 @@ jobs:
           node-version: 20
           cache: npm
 
-      # npm ci refuses to resolve optionalDependencies for platforms missing
-      # from package-lock.json (npm/cli#4828) — our lockfile only has darwin-arm64
-      # entries for native binaries like @biomejs/cli-*, so it would fail to find
-      # @biomejs/cli-linux-x64 here. npm install resolves it dynamically instead.
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      # npm ci won't resolve optionalDependencies for platforms missing from
+      # package-lock.json (npm/cli#4828) — our lockfile only has darwin-arm64
+      # entries for native binaries like @biomejs/cli-*, so Biome's linux-x64
+      # binary is never installed here. Install it explicitly (not saved to
+      # the lockfile) so `biome check` can find it on this runner.
+      - name: Install Biome's Linux binary
+        run: npm install --no-save @biomejs/cli-linux-x64@2.2.0
 
       - name: Lint, typecheck, and test
         run: npx turbo run lint typecheck test
